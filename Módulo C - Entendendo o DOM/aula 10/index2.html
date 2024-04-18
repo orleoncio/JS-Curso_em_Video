@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma</title>
+    <style>
+        div#resp {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="number" name="num1" id="num1"> +
+    <input type="number" name="num2" id="num2">
+    <input type="button" value="Somar" onclick="soma()">
+    <div id="resp">Resposta</div>
+    <script>
+        function soma() {
+            var num1 = Number(window.document.querySelector("input#num1").value)
+            var num2 = Number(window.document.querySelector("input#num2").value)
+            var s = num1 + num2
+            window.document.querySelector("div#resp").innerText = `A soma entre ${num1} e ${num2} é ${s}`
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idade</title>
+    <style>
+        body {
+            background-color: rgb(0, 108, 248);
+            font: normal 16pt arial;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+        }
+
+        section {
+            background-color: white;
+            padding: 40px 20px;
+            width: 70vw;
+            margin: auto;
+            border-radius: 20px;
+        }
+
+        input {
+            margin: 20px 0px;
+        }
+
+        input#button {
+            display: block;
+            padding: 5px;
+        }
+
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Verificador de Idade</h1>
+    </header>
+    <section>
+        Ano de Nascimento : <input type="number" name="idade" id="idade"><br>
+        Sexo: 
+        <input type="radio" name="sexo" id="masc" >
+        <label for="masc">Masculino</label>
+        <input type="radio" name="sexo" id="fem">
+        <label for="fem">Feminino</label>
+        <input type="button" value="Verificar" id="button" onclick="calcular()">
+        <p id="txt">Adiciona uma idade e um sexo...</p>   
+        <script>
+            function calcular(){
+                var agora = new Date()
+                var anoAtual = agora.getFullYear()
+                var anoNasc = Number(window.document.getElementById("idade").value)
+                var masc = window.document.getElementById("masc")
+                var fem = window.document.getElementById("fem")
+                var txt = window.document.getElementById("txt")
+                var idade = anoAtual - anoNasc
+                if(anoNasc > 1900 && anoNasc < 2025){
+                    if(masc.checked) {
+                        txt.innerHTML = `Detectamos um Homem com ${idade} anos.`
+                    }else if(fem.checked) {
+                        txt.innerHTML = `Detectamos uma Mulher com ${idade} anos`
+                    }else {
+                        window.alert("Verifique os dados e tente novamente")
+                    }
+                }else {
+                    window.alert("Verifique os dados e tente novamente")
+                } 
+            }            
+        </script>    
+    </section>
+</body>
+</html>
