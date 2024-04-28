@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Numeros</title>
+    <style>
+        body {
+            background-color: rgb(0, 102, 255);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            color: white;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 75vw;
+            margin: auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.603);
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        select {
+            width: 200px;
+        }
+
+        div#saida > input {
+            display: block;
+            margin-top: 20px;
+        }        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analizador de Números</h1>
+    </header>
+    <section>
+        <div id="entrada">
+            <p>
+                Números (entre 1 e 100) <input type="number" name="num" id="num"> 
+                <input type="button" value="Adicionar" onclick="adicionar()">
+            </p>
+        </div>
+        <div id="saida">
+            <select name="list" id="list" size="10">
+                
+            </select>
+            <input type="button" value="Finalizar" onclick="finalizar()">
+            <div id="res">
+
+            </div>
+        </div>
+    </section>
+    <script>
+        let num = document.getElementById("num")
+        let lista = []
+        let sel = document.getElementById("list")
+        let res = document.getElementById("res")
+
+        //ANALIZA SE O NUMERO DIGITADO ESTA DENTRO DO INTERVALO DESEJADO
+        function isNumber(n) {
+            if(Number(n) >= 1 && Number(n) <= 100){
+                return true
+            }else {
+                return false
+            }
+        }
+
+        //ANALIZA SE O NUMERO DIGITADO JA ESTA NA LISTA
+        function inList(n, l) {
+            if(l.indexOf(Number(n)) != -1){
+                return true
+            }else {
+                return false
+            }
+        }
+
+        //ADICIONA O NUMERO DIGITADO A LISTA
+        function adicionar() {
+            if(isNumber(num.value) && !inList(num.value , lista)){
+                lista.push(Number(num.value))
+                let item = document.createElement("option")
+                item.text = `Valor ${num.value} adicionado.`
+                sel.appendChild(item)
+                res.innerHTML = ""
+            }else {
+                window.alert("ERRO")
+            }
+            num.value = ""
+            num.focus()
+        }
+
+        //MOSTRANDO RESULTADOS DA LISTA
+        function finalizar() {
+            if(lista.length == 0){
+                window.alert("ERRO")
+            }else {
+                let soma = 0
+                let media = 0
+                let menor = lista[0]
+                let maior = lista[0]
+                for(let x in lista){
+                    soma += lista[x]
+                    if(lista[x] > maior){
+                        maior = lista[x]
+                    }else if(lista[x] < menor){
+                        menor = lista[x]
+                    }
+                }
+                media = soma / lista.length
+                res.innerHTML += `<p>Ao todo, temos ${lista.length} números cadastrados.</p>`
+                res.innerHTML += `<p>O maior valor informado foi ${maior}.</p>`
+                res.innerHTML += `<p>O menor valor informado foi ${menor}.</p>`
+                res.innerHTML += `<p>Somando todos os valores temos ${soma}.</p>`
+                res.innerHTML += `<p>A media entre todos os valores é ${media}.</p>`
+                window.alert(lista)
+            }
+        }
+    </script>
+</body>
+</html>

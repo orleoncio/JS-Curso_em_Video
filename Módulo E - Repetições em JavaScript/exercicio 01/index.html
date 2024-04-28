@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem</title>
+    <style>
+        body {
+            background-color: rgb(0, 102, 255);
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 60vw;
+            margin: auto;
+        }
+
+        input {
+            display: block;
+        }
+        
+        input#botao {
+            margin: 30px 0px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vamos Contar</h1>
+    </header>
+    <section>
+        <label for="inicio">Inicio : </label>
+        <input type="number" name="inicio" id="inicio">
+        <label for="fim">Fim : </label>
+        <input type="number" name="fim" id="fim">
+        <label for="passo">Passo : </label>
+        <input type="number" name="passo" id="passo">
+        <input type="button" value="Contar" id="botao" onclick="contar()">
+        <div id="contador">
+            <p>contando...</p>
+        </div>
+        <script>
+            function contar(){
+                var inicio = Number(document.querySelector("input#inicio").value)
+                var fim = Number(document.querySelector("input#fim").value)
+                var passo = Number(document.querySelector("input#passo").value)
+                var txt = document.querySelector("div#contador")
+                if(fim < inicio || passo < 1) {
+                    window.alert("Algum valor adicionado incorretamente!")
+                }else {
+                    for(var x = inicio ; x < fim ; x += passo) {
+                        txt.innerHTML += `${x} -> `
+                    }
+                }
+            }
+            
+        </script>
+    </section>
+</body>
+</html>
